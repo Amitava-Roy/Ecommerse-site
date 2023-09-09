@@ -72,7 +72,7 @@ app.use((error, req, res, next) => {
     .json({ error: error.message });
 });
 
-const url = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.tb7sua0.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://user:1234@cluster0.tb7sua0.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
   .connect(url, {
     useUnifiedTopology: true,
