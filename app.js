@@ -35,8 +35,7 @@ const fileFilter = (req, file, cb) => {
 const shopRouter = require("./routes/shop");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
-const helmet = require("helmet");
-app.use(helmet());
+
 app.use(compression());
 app.use(bodyParser.json());
 app.use(
