@@ -29,7 +29,7 @@ exports.postProduct = (req, res, next) => {
     product
       .save()
       .then((result) => {
-        res.status(201).json({ data: "created " });
+        res.status(201).json(result);
       })
       .catch((err) => {
         console.log(err);
