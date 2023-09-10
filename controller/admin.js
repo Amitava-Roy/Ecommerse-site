@@ -16,7 +16,6 @@ exports.postProduct = (req, res, next) => {
     category = "any";
   }
   Admin.findOne({ email: req.email }).then((result) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
     const creator = result._id;
     console.log(creator);
     const product = new Product({
@@ -30,7 +29,7 @@ exports.postProduct = (req, res, next) => {
     product
       .save()
       .then((result) => {
-        res.status(201).json(result);
+        res.status(201).json({ data: "created " });
       })
       .catch((err) => {
         console.log(err);
