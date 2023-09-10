@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const multer = require("multer");
@@ -60,6 +61,7 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use(cors());
 app.use(shopRouter);
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
