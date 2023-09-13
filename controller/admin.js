@@ -6,10 +6,10 @@ exports.postProduct = (req, res, next) => {
   let { name, details, price, category, imageUrl } =
     req.body;
   consol.log(req.file);
-  if (!req.file && !imageUrl) {
-    const error = new Error("Need an image to add Product");
-    return next(error);
-  }
+  // if (!req.file && !imageUrl) {
+  //   const error = new Error("Need an image to add Product");
+  //   return next(error);
+  // }
 
   const image = req.file ? req.file.path : imageUrl;
 
