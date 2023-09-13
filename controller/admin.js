@@ -3,14 +3,13 @@ const Admin = require("../model/admin");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 exports.postProduct = (req, res, next) => {
-  let { name, details, price, category, imageUrl } =
-    req.body;
-  // if (!req.file && !imageUrl) {
-  //   const error = new Error("Need an image to add Product");
-  //   return next(error);
-  // }
+  let { name, details, price, category } = req.body;
+  if (!req.file) {
+    const error = new Error("Need an image to add Product");
+    return next(error);
+  }
 
-  const image = req.file ? req.file.path : imageUrl;
+  const image = req.file.path;
 
   if (!price) {
     price = 0;
