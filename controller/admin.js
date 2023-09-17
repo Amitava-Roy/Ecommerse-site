@@ -3,8 +3,7 @@ const Admin = require("../model/admin");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 exports.postProduct = (req, res, next) => {
-  let { name, details, price, category, imageUrl } =
-    req.body;
+  let { name, details, price, category, image } = req.body;
   // if (!req.file) {
   //   const error = new Error("Need an image to add Product");
   //   return next(error);
@@ -25,7 +24,7 @@ exports.postProduct = (req, res, next) => {
       name,
       details,
       creator,
-      image: imageUrl,
+      image,
       price,
       category,
     });
@@ -40,9 +39,9 @@ exports.postProduct = (req, res, next) => {
   });
 };
 exports.editProduct = (req, res, next) => {
-  const { name, details, price, category, _id, imageUrl } =
+  const { name, details, price, category, _id, image } =
     req.body;
-  const image = imageUrl;
+
   Product.findOneAndUpdate(
     { _id: _id },
     {
