@@ -6,6 +6,7 @@ const multer = require("multer");
 const path = require("path");
 const compression = require("compression");
 
+//flie storage
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
@@ -20,6 +21,7 @@ const fileStorage = multer.diskStorage({
     );
   },
 });
+//filtering to allow only jpg file
 const fileFilter = (req, file, cb) => {
   if (
     file.mimetype === "image/jpeg" ||
@@ -31,12 +33,13 @@ const fileFilter = (req, file, cb) => {
     cb(null, false);
   }
 };
-//file import
+//route import
 const shopRouter = require("./routes/shop");
 const adminRouter = require("./routes/admin");
 const userRouter = require("./routes/user");
-
+// compression middleware
 app.use(compression());
+
 app.use(bodyParser.json());
 app.use(
   multer({
@@ -48,6 +51,8 @@ app.use(
   "/images",
   express.static(path.join(__dirname, "images"))
 );
+
+//cors
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -73,6 +78,7 @@ app.use((error, req, res, next) => {
     .json({ error: error.message });
 });
 
+//connect to database
 const url = `mongodb+srv://user:1234@cluster0.tb7sua0.mongodb.net/?retryWrites=true&w=majority`;
 mongoose
   .connect(url, {

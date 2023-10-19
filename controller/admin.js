@@ -2,6 +2,7 @@ const Product = require("../model/product");
 const Admin = require("../model/admin");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+
 exports.postProduct = (req, res, next) => {
   let { name, details, price, category, image } = req.body;
   // if (!req.file) {
